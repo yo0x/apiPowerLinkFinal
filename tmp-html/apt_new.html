@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/all.css" />
+    <link rel="stylesheet" type="text/css" href="./css/apt_new.css" />
+    <title>YossiMousi hair fashion</title>
+</head>
+<body>
+    <!--step 0: choose type of haircut and date-->
+    <form action="#" id="apt-new">
+        <div class="frm-container">
+            <div class="frm-item">
+                <span class="frm-title">בחר סוג תספורת</span>
+                <select name="haircuts" id="">
+                    <option value="">צבע</option>
+                    <option value="">תספורת בנים</option>
+                    <option value="">מאיפה לי</option>
+                </select>
+                <span id="price">מלאנתאלפים</span>
+            </div>
+            <div class="frm-item">
+                <span class="frm-title">שעות פנויות בתאריך</span>
+                <input type="date" name="date" id="date">
+            </div>
+       </div>
+    </form>
+
+    <!--step 1: select hour by tag-->
+    <form action="#" id="hours">
+        <div class="tag-container">
+            <input type="button" value="12:50" class="tab-head">
+            <input type="button" value="13:15" class="tab-head">
+            <input type="button" value="14:40" class="tab-head">
+            <input type="button" value="16:30" class="tab-head">
+        </div>
+    </form>
+
+    <!--step 2: fill details if not logged in-->
+   <form action="#" id="details">
+       <div class="frm-container">
+           <div class="frm-item">
+                <span class="frm-title">שם פרטי</span>
+                <input type="text" name="name-first" />
+                <span class="frm-confirm"></span>
+           </div>
+           <div class="frm-item">
+               <span class="frm-title">שם משפחה</span>
+               <input type="text" name="name-last" />
+               <span class="frm-confirm"></span>
+           </div>
+           <div class="frm-item">
+               <span class="frm-title">טלפון</span>
+               <input type="text" name="phone" />
+               <span class="frm-confirm"></span>
+           </div>
+           <div class="frm-item">
+               <span class="frm-title">דוא"ל (רשות)</span>
+               <input type="email" name="mail" />
+           </div>
+           <div class="frm-item">
+               <span class="frm-title">כתובת</span>
+               <input type="text" name="address" />
+               <span class="frm-confirm"></span>
+           </div>
+           <input type="submit" value="לאישור" />
+       </div>
+   </form>
+
+   <!--step 3: acceptence when not logged in-->
+   <form action="#" id="acceptence">
+       <span>הקלד קוד קבלה</span>
+       <input type="text" name="code" />
+       <input type="submit" value="אשר" />
+   </form>
+</body>
+</html>

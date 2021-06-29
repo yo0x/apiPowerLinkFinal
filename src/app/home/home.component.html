@@ -1,0 +1,20 @@
+    <!--logo-->
+    <div id="logo-container">
+        <div class="container mx-auto grid place-items-center">
+            <!--note: same ratio as the original picture-->
+            <img src="assets/images/logo.jpeg" alt="Yossi Sassi - Hair Fashion" />
+        </div>
+    </div>
+
+    <!--main menu-->
+    <div class="container flex mx-auto items-stretch justify-around">
+        <div class="m-5 px-20 py-4 rounded-lg hover:bg-yellow-100 font-bold text-green-700"><a (click)="navToSched()">קבע תור</a></div>
+        <!-- Temporarly deleted to do MVP -->
+        <!--
+        <div class="px-20 py-4 hover:bg-yellow-100"><a href="#" (click)="navToAlter()">שינוי תור</a></div>
+        <div class="px-20 py-4 hover:bg-yellow-100"><a href="#" (click)="navToSignup()">הרשמה VIP</a></div>
+        <div class="px-20 py-4 hover:bg-yellow-100"><a href="#" (click)="navToLogin()">כניסה VIP</a></div>
+        -->
+    </div>
+
+    <app-sched *ngIf="show_sched"></app-sched>

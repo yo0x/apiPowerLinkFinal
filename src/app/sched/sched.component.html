@@ -1,0 +1,76 @@
+    <!--Step 0: get basic info-->
+    <div class="container mx-auto flex mb-2 grid place-items-center bg-gray-200 rounded-md">
+        <div class="block p-6">
+            <span class="px-5 text-green-700">בחר סוג תספורת</span>
+            <select name="haircuts" id="haircuts" [(ngModel)]="currentHc" (change)="updatePrice()"
+            class="border border-green-700 hover:border-yellow-600 focus:border-yellow-600 rounded py-2 px-10">
+                <option *ngFor="let hc of haircuts" [value]="hc.type">
+                    {{hc.name}}
+                </option>
+            </select>
+            <br />
+            <br *ngIf="!this.price" />
+            <span id="price" *ngIf="this.price" class="m-5 italic text-yellow-600">מחיר: {{this.price}} &#8362;</span>
+        </div>
+        <div class="mb-6">
+            <span class="px-5 text-green-700">שעות פנויות בתאריך</span>
+            <input class="border border-green-700 py-2 px-5 rounded-md hover:border-yellow-600 focus:border-yellow-600" type="date" name="date" id="date" [(ngModel)]="this.chosenDate" (change)="fillHours()" />
+        </div>
+    </div>
+
+    <!--Step 1: select available appointment-->
+    <div *ngIf="(this.chosenDate != null || this.chosenDate != undefined)
+     && (this.price != null || this.price != undefined)"
+     class="container flex place-items-center bg-gray-500 justify-around mb-2 rounded-md text-gray-200">
+        <a *ngFor="let h of availableHours" dir="ltr" (click)="addTime(h)" class="text-sm rounded-lg italic hover:text-yellow-200 py-2 px-5"
+        [class.bg-green-500]="h == this.cl">
+         {{padNumToStr(h.hour, 2)}}:{{padNumToStr(h.min, 2)}}
+        </a> <br />
+    </div>
+
+    <!--Step 2: fill costumer details-->
+    <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+        <div *ngIf="canProccedToPayment"
+        class="container mx-auto mb-2 bg-gray-200 grid p-8 rounded-md">
+            <div class="mb-6">
+                <div class="block">
+                    <span class="text-green-700 mb-2">שם פרטי:</span>
+                    <span *ngIf="name_first_empty" class="text-red-500 italic m-20">שדה חובה</span>
+                </div>
+                <input formControlName="accountname"  placeholder="Enter accountname" class="w-full rounded-md border border-green-700 hover:border-yellow-600 py-2" type="text" name="name" [(ngModel)]="name_first" />
+            </div>
+
+            <div class="mb-6">
+                <div class="block">
+                    <span class="text-green-700 mb-2">שם משפחה</span>
+                    <span *ngIf="name_last_empty" class="text-red-500 italic m-20">שדה חובה</span>
+                </div>
+                <input placeholder="Enter lastname" class="w-full rounded-md border border-green-700 hover:border-yellow-600 py-2" type="text" [(ngModel)]="name_last" name="last" />
+            </div>
+
+            <div class="mb-6">
+                <div class="block">
+                    <span class="text-green-700 mb-2">מס' טלפון</span>
+                    <span [textContent]="phone_err_str" class="text-red-500 italic m-20"></span>
+                </div>
+                <input formControlName="telephone1"  placeholder="Enter telephone1" class="w-full rounded-md border border-green-700 hover:border-yellow-600 py-2" type="text" name="phone" [(ngModel)]="tmp_phone" placeholder="פורמט: 05x-xxxxxxx" />
+            </div>
+
+            <div class="mb-6">
+                <span class="block text-green-700 mb-2">אימייל (רשות):</span>
+                <input formControlName="emailaddress1"  placeholder="Enter emailaddress1" class="w-full rounded-md border border-green-700 hover:border-yellow-600 py-2" placeholder="example@email.com" dir="ltr" type="email" name="mail" [(ngModel)]="email" />
+            </div>
+
+            <div>
+                <input type="submit" name="s" value="לאישור" class="mb-6 w-full bg-green-500 hover:bg-yellow-500 rounded-lg border text-gray-100 py-2 text-lg" />
+            </div>
+        </div>
+    </form>
+    <div *ngIf="canAccept">הקוד הוא 0x10f2c</div>
+
+    <app-verifyer *ngIf="canAccept" [(accept)]="canCC" (afterFunc)="sendToServer()"></app-verifyer>
+
+    <div *ngIf="canCC" class="container flex grid mx-auto text-lg place-items-center">
+        <span class="text-green-700 italic">תור נקבע!</span>
+        <a class="text-yellow-500 hover:text-green-700 hover:underline" onclick="alert('Some Credit Card Company')">שלם באשראי</a>
+    </div>

@@ -1,0 +1,47 @@
+#contact-frame {
+    height: 100%;
+    width: 95%;
+}
+#contact-frame form{
+    border:thistle solid;
+    border-radius: 10px;
+    width: 57.5%;
+}
+#contact-frame input{
+    width: 75%;
+}
+.form-group{
+    width: 75%;
+}
+.input-control{
+    padding-left: 2.5%;
+}
+
+@media screen and (max-width: 1400px){
+    #contact-frame form{
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    #contact-frame form{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 575px){
+
+    #contact-frame form{
+        width: 100%;
+        height: unset;
+
+    }
+    #contact-frame {
+        height: fit-content;
+        padding-top: 15%;
+        width: 100%;
+    }
+    .row{
+        margin-left: unset;
+    }
+}
